@@ -25,10 +25,10 @@ namespace Audio3D
         #region Fields
 
         // How long until we should play the next sound.
-        private TimeSpan timeDelay = TimeSpan.Zero;
+        private TimeSpan _timeDelay = TimeSpan.Zero;
 
         // Random number generator for choosing between sound variations.
-        private readonly static Random random = new Random();
+        private readonly static Random Random = new Random();
 
         #endregion
 
@@ -50,24 +50,28 @@ namespace Audio3D
             Velocity = newPosition - Position;
             Position = newPosition;
             if (Velocity == Vector3.Zero)
+            {
                 Forward = Vector3.Forward;
+            }
             else
+            {
                 Forward = Vector3.Normalize(Velocity);
+            }
 
             Up = Vector3.Up;
 
             // If the time delay has run out, trigger another single-shot sound.
-            timeDelay -= gameTime.ElapsedGameTime;
+            _timeDelay -= gameTime.ElapsedGameTime;
 
-            if (timeDelay < TimeSpan.Zero)
+            if (_timeDelay < TimeSpan.Zero)
             {
                 // For variety, randomly choose between three slightly different
                 // variants of the sound (CatSound0, CatSound1, and CatSound2).
-                string soundName = "CatSound" + random.Next(3);
+                string soundName = "CatSound" + Random.Next(3);
 
                 audioManager.Play3DSound(soundName, false, this);
 
-                timeDelay += TimeSpan.FromSeconds(1.25f);
+                _timeDelay += TimeSpan.FromSeconds(1.25f);
             }
         }
     }
