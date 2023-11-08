@@ -22,9 +22,9 @@ namespace Audio3D
     {
         #region Fields
 
-        private readonly GraphicsDevice graphicsDevice;
-        private readonly AlphaTestEffect effect;
-        private readonly VertexPositionTexture[] vertices;
+        private readonly GraphicsDevice _graphicsDevice;
+        private readonly AlphaTestEffect _effect;
+        private readonly VertexPositionTexture[] _vertices;
 
         #endregion
 
@@ -34,20 +34,20 @@ namespace Audio3D
         /// </summary>
         public QuadDrawer(GraphicsDevice device)
         {
-            graphicsDevice = device;
+            _graphicsDevice = device;
 
-            effect = new AlphaTestEffect(device);
+            _effect = new AlphaTestEffect(device);
 
-            effect.AlphaFunction = CompareFunction.Greater;
-            effect.ReferenceAlpha = 128;
+            _effect.AlphaFunction = CompareFunction.Greater;
+            _effect.ReferenceAlpha = 128;
 
             // Preallocate an array of four vertices.
-            vertices = new VertexPositionTexture[4];
+            _vertices = new VertexPositionTexture[4];
 
-            vertices[0].Position = new Vector3(1, 1, 0);
-            vertices[1].Position = new Vector3(-1, 1, 0);
-            vertices[2].Position = new Vector3(1, -1, 0);
-            vertices[3].Position = new Vector3(-1, -1, 0);
+            _vertices[0].Position = new Vector3(1, 1, 0);
+            _vertices[1].Position = new Vector3(-1, 1, 0);
+            _vertices[2].Position = new Vector3(1, -1, 0);
+            _vertices[3].Position = new Vector3(-1, -1, 0);
         }
 
 
@@ -58,22 +58,22 @@ namespace Audio3D
                              Matrix world, Matrix view, Matrix projection)
         {
             // Set our effect to use the specified texture and camera matrices.
-            effect.Texture = texture;
+            _effect.Texture = texture;
 
-            effect.World = world;
-            effect.View = view;
-            effect.Projection = projection;
+            _effect.World = world;
+            _effect.View = view;
+            _effect.Projection = projection;
 
             // Update our vertex array to use the specified number of texture repeats.
-            vertices[0].TextureCoordinate = new Vector2(0, 0);
-            vertices[1].TextureCoordinate = new Vector2(textureRepeats, 0);
-            vertices[2].TextureCoordinate = new Vector2(0, textureRepeats);
-            vertices[3].TextureCoordinate = new Vector2(textureRepeats, textureRepeats);
+            _vertices[0].TextureCoordinate = new Vector2(0, 0);
+            _vertices[1].TextureCoordinate = new Vector2(textureRepeats, 0);
+            _vertices[2].TextureCoordinate = new Vector2(0, textureRepeats);
+            _vertices[3].TextureCoordinate = new Vector2(textureRepeats, textureRepeats);
 
             // Draw the quad.
-            effect.CurrentTechnique.Passes[0].Apply();
+            _effect.CurrentTechnique.Passes[0].Apply();
 
-            graphicsDevice.DrawUserPrimitives(PrimitiveType.TriangleStrip, vertices, 0, 2);
+            _graphicsDevice.DrawUserPrimitives(PrimitiveType.TriangleStrip, _vertices, 0, 2);
         }
     }
 }
