@@ -24,10 +24,10 @@ namespace Audio3D
         #region Fields
 
         // How long until we should start or stop the sound.
-        TimeSpan timeDelay = TimeSpan.Zero;
+        private TimeSpan timeDelay = TimeSpan.Zero;
 
         // The sound which is currently playing, if any.
-        SoundEffectInstance activeSound = null;
+        private SoundEffectInstance activeSound = null;
 
         #endregion
 
