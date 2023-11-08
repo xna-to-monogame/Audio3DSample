@@ -24,10 +24,10 @@ namespace Audio3D
         #region Fields
 
         // How long until we should start or stop the sound.
-        private TimeSpan timeDelay = TimeSpan.Zero;
+        private TimeSpan _timeDelay = TimeSpan.Zero;
 
         // The sound which is currently playing, if any.
-        private SoundEffectInstance activeSound = null;
+        private SoundEffectInstance _activeSound = null;
 
         #endregion
 
@@ -46,24 +46,24 @@ namespace Audio3D
             // If the time delay has run out, start or stop the looping sound.
             // This would normally go on forever, but we stop it after a six
             // second delay, then start it up again after four more seconds.
-            timeDelay -= gameTime.ElapsedGameTime;
+            _timeDelay -= gameTime.ElapsedGameTime;
 
-            if (timeDelay < TimeSpan.Zero)
+            if (_timeDelay < TimeSpan.Zero)
             {
-                if (activeSound == null)
+                if (_activeSound == null)
                 {
                     // If no sound is currently playing, trigger one.
-                    activeSound = audioManager.Play3DSound("DogSound", true, this);
+                    _activeSound = audioManager.Play3DSound("DogSound", true, this);
 
-                    timeDelay += TimeSpan.FromSeconds(6);
+                    _timeDelay += TimeSpan.FromSeconds(6);
                 }
                 else
                 {
                     // Otherwise stop the current sound.
-                    activeSound.Stop(false);
-                    activeSound = null;
+                    _activeSound.Stop(false);
+                    _activeSound = null;
 
-                    timeDelay += TimeSpan.FromSeconds(4);
+                    _timeDelay += TimeSpan.FromSeconds(4);
                 }
             }
         }
