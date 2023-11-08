@@ -25,10 +25,10 @@ namespace Audio3D
         #region Fields
 
         // How long until we should play the next sound.
-        TimeSpan timeDelay = TimeSpan.Zero;
+        private TimeSpan timeDelay = TimeSpan.Zero;
 
         // Random number generator for choosing between sound variations.
-        static Random random = new Random();
+        private readonly static Random random = new Random();
 
         #endregion
 
