@@ -201,23 +201,4 @@ namespace Audio3D
 
         #endregion
     }
-
-
-    #region Entry Point
-
-    /// <summary>
-    /// The main entry point for the application.
-    /// </summary>
-    static class Program
-    {
-        static void Main()
-        {
-            using (Audio3DGame game = new Audio3DGame())
-            {
-                game.Run();
-            }
-        }
-    }
-
-    #endregion
 }
