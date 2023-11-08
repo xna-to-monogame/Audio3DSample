@@ -7,6 +7,13 @@
     <TieredCompilation>false</TieredCompilation>
   </PropertyGroup>
   <PropertyGroup>
+    <Title>Audio 3D</Title>
+    <Product>Audio 3D</Product>
+    <Description>This sample shows how to position sounds in 3D space, implementing panning, Doppler, and distance attenuation effects.</Description>
+    <Company>Microsoft</Company>
+    <Copyright>Copyright © Microsoft 2007</Copyright>
+  </PropertyGroup>
+  <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
