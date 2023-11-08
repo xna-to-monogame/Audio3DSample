@@ -28,11 +28,11 @@ namespace Audio3D
         /// </summary>
         public Vector3 Position
         {
-            get { return position; }
-            set { position = value; }
+            get { return _position; }
+            set { _position = value; }
         }
 
-        Vector3 position;
+        private Vector3 _position;
 
 
         /// <summary>
@@ -40,11 +40,11 @@ namespace Audio3D
         /// </summary>
         public Vector3 Forward
         {
-            get { return forward; }
-            set { forward = value; }
+            get { return _forward; }
+            set { _forward = value; }
         }
 
-        Vector3 forward;
+        private Vector3 _forward;
 
 
         /// <summary>
@@ -52,11 +52,11 @@ namespace Audio3D
         /// </summary>
         public Vector3 Up
         {
-            get { return up; }
-            set { up = value; }
+            get { return _up; }
+            set { _up = value; }
         }
 
-        Vector3 up;
+        private  Vector3 _up;
 
         
         /// <summary>
@@ -64,11 +64,11 @@ namespace Audio3D
         /// </summary>
         public Vector3 Velocity
         {
-            get { return velocity; }
-            protected set { velocity = value; }
+            get { return _velocity; }
+            protected set { _velocity = value; }
         }
 
-        Vector3 velocity;
+        private Vector3 _velocity;
 
 
         /// <summary>
@@ -76,11 +76,11 @@ namespace Audio3D
         /// </summary>
         public Texture2D Texture
         {
-            get { return texture; }
-            set { texture = value; }
+            get { return _texture; }
+            set { _texture = value; }
         }
 
-        Texture2D texture;
+        private Texture2D _texture;
 
 
         #endregion
