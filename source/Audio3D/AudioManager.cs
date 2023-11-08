@@ -20,13 +20,13 @@ namespace Audio3D
     /// their settings as the camera and entities move around the world, and
     /// automatically disposing sound effect instances after they finish playing.
     /// </summary>
-    public class AudioManager : Microsoft.Xna.Framework.GameComponent
+    public class AudioManager : GameComponent
     {
         #region Fields
 
 
         // List of all the sound effects that will be loaded into this manager.
-        static string[] soundNames =
+        private readonly static string[] soundNames =
         {
             "CatSound0",
             "CatSound1",
@@ -42,19 +42,19 @@ namespace Audio3D
             get { return listener; }
         }
 
-        AudioListener listener = new AudioListener();
+        private readonly AudioListener listener = new AudioListener();
 
 
         // The emitter describes an entity which is making a 3D sound.
-        AudioEmitter emitter = new AudioEmitter();
+        private readonly AudioEmitter emitter = new AudioEmitter();
 
 
         // Store all the sound effects that are available to be played.
-        Dictionary<string, SoundEffect> soundEffects = new Dictionary<string, SoundEffect>();
+        private readonly Dictionary<string, SoundEffect> soundEffects = new Dictionary<string, SoundEffect>();
 
         
         // Keep track of all the 3D sounds that are currently playing.
-        List<ActiveSound> activeSounds = new List<ActiveSound>();
+        private readonly List<ActiveSound> activeSounds = new List<ActiveSound>();
 
 
         #endregion
