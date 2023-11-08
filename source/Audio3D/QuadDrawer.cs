@@ -22,9 +22,9 @@ namespace Audio3D
     {
         #region Fields
 
-        GraphicsDevice graphicsDevice;
-        AlphaTestEffect effect;
-        VertexPositionTexture[] vertices;
+        private readonly GraphicsDevice graphicsDevice;
+        private readonly AlphaTestEffect effect;
+        private readonly VertexPositionTexture[] vertices;
 
         #endregion
 
