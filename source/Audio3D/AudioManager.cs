@@ -26,7 +26,7 @@ namespace Audio3D
 
 
         // List of all the sound effects that will be loaded into this manager.
-        private readonly static string[] soundNames =
+        private readonly static string[] SoundNames =
         {
             "CatSound0",
             "CatSound1",
@@ -39,22 +39,22 @@ namespace Audio3D
         // This is usually set to match the camera.
         public AudioListener Listener
         {
-            get { return listener; }
+            get { return _listener; }
         }
 
-        private readonly AudioListener listener = new AudioListener();
+        private readonly AudioListener _listener = new AudioListener();
 
 
         // The emitter describes an entity which is making a 3D sound.
-        private readonly AudioEmitter emitter = new AudioEmitter();
+        private readonly AudioEmitter _emitter = new AudioEmitter();
 
 
         // Store all the sound effects that are available to be played.
-        private readonly Dictionary<string, SoundEffect> soundEffects = new Dictionary<string, SoundEffect>();
+        private readonly Dictionary<string, SoundEffect> _soundEffects = new Dictionary<string, SoundEffect>();
 
         
         // Keep track of all the 3D sounds that are currently playing.
-        private readonly List<ActiveSound> activeSounds = new List<ActiveSound>();
+        private readonly List<ActiveSound> _activeSounds = new List<ActiveSound>();
 
 
         #endregion
@@ -77,9 +77,9 @@ namespace Audio3D
             SoundEffect.DopplerScale = 0.1f;
 
             // Load all the sound effects.
-            foreach (string soundName in soundNames)
+            foreach (string soundName in SoundNames)
             {
-                soundEffects.Add(soundName, Game.Content.Load<SoundEffect>(soundName));
+                _soundEffects.Add(soundName, Game.Content.Load<SoundEffect>(soundName));
             }
 
             base.Initialize();
@@ -95,12 +95,12 @@ namespace Audio3D
             {
                 if (disposing)
                 {
-                    foreach (SoundEffect soundEffect in soundEffects.Values)
+                    foreach (SoundEffect soundEffect in _soundEffects.Values)
                     {
                         soundEffect.Dispose();
                     }
 
-                    soundEffects.Clear();
+                    _soundEffects.Clear();
                 }
             }
             finally
@@ -118,9 +118,9 @@ namespace Audio3D
             // Loop over all the currently playing 3D sounds.
             int index = 0;
 
-            while (index < activeSounds.Count)
+            while (index < _activeSounds.Count)
             {
-                ActiveSound activeSound = activeSounds[index];
+                ActiveSound activeSound = _activeSounds[index];
 
                 if (activeSound.Instance.State == SoundState.Stopped)
                 {
@@ -128,7 +128,7 @@ namespace Audio3D
                     activeSound.Instance.Dispose();
 
                     // Remove it from the active list.
-                    activeSounds.RemoveAt(index);
+                    _activeSounds.RemoveAt(index);
                 }
                 else
                 {
@@ -151,7 +151,7 @@ namespace Audio3D
             ActiveSound activeSound = new ActiveSound();
 
             // Fill in the instance and emitter fields.
-            activeSound.Instance = soundEffects[soundName].CreateInstance();
+            activeSound.Instance = _soundEffects[soundName].CreateInstance();
             activeSound.Instance.IsLooped = isLooped;
 
             activeSound.Emitter = emitter;
@@ -162,7 +162,7 @@ namespace Audio3D
             activeSound.Instance.Play();
 
             // Remember that this sound is now active.
-            activeSounds.Add(activeSound);
+            _activeSounds.Add(activeSound);
 
             return activeSound.Instance;
         }
@@ -173,12 +173,12 @@ namespace Audio3D
         /// </summary>
         private void Apply3D(ActiveSound activeSound)
         {
-            emitter.Position = activeSound.Emitter.Position;
-            emitter.Forward = activeSound.Emitter.Forward;
-            emitter.Up = activeSound.Emitter.Up;
-            emitter.Velocity = activeSound.Emitter.Velocity;
+            _emitter.Position = activeSound.Emitter.Position;
+            _emitter.Forward = activeSound.Emitter.Forward;
+            _emitter.Up = activeSound.Emitter.Up;
+            _emitter.Velocity = activeSound.Emitter.Velocity;
 
-            activeSound.Instance.Apply3D(listener, emitter);
+            activeSound.Instance.Apply3D(_listener, _emitter);
         }
 
 
