@@ -19,16 +19,16 @@ namespace Audio3D
     /// <summary>
     /// Sample showing how to implement 3D audio.
     /// </summary>
-    public class Audio3DGame : Microsoft.Xna.Framework.Game
+    public class Audio3DGame : Game
     {
         #region Fields
 
-        GraphicsDeviceManager graphics;
+        private readonly GraphicsDeviceManager graphics;
 
-        AudioManager audioManager;
+        private readonly AudioManager audioManager;
 
-        SpriteEntity cat;
-        SpriteEntity dog;
+        private readonly SpriteEntity cat;
+        private readonly SpriteEntity dog;
 
         Texture2D checkerTexture;
 
