@@ -2,6 +2,7 @@
 # Audio3D Sample
 This sample shows how to position sounds in 3D space, implementing panning, Doppler, and distance attenuation effects.
 
+![Audio 3D sample screenshot.  Screenshot shows a dog](3DAudioSample.png)
 
 ## Sample Overview
 
